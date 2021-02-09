@@ -20,13 +20,12 @@ int main(int argc, char const *argv[]) {
     write(fd, data, sizeof(data));
 
 
-    unsigned char pixels[500][500][3];
-    int row, col;
+    unsigned char pixels[500][500][3], r;
+    int row, col, ch;
     for(row = 0; row < 500; row++){
+        read(rand, &r, sizeof(unsigned char));
         for(col = 0; col < 500; col++){
-            read(rand, pixels[row][col], 4);
-            read(rand, pixels[row][col] + 1, 4);
-            read(rand, pixels[row][col] + 2, 4);
+            pixels[row][col][r % 3] = (row + col) * r;
         }
     }
 
